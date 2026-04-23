@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discord Webhook Manager</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .fade-in { animation: fadeIn 0.5s ease-in forwards; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    </style>
+</head>
+<body class="bg-gray-800 min-h-screen flex items-center justify-center font-sans transition-colors duration-700">
+
+    <div id="authScreen" class="w-full flex flex-col items-center">
+        <div class="bg-gray-900 p-10 rounded-2xl shadow-2xl border border-gray-700 w-80">
+            <h2 class="text-gray-400 text-xs font-bold tracking-widest uppercase mb-4 text-center">Security Check</h2>
+            <input type="password" id="accessKey" placeholder="Enter Key..." 
+                class="w-full bg-gray-800 border border-gray-700 rounded-lg p-3 text-white text-center focus:outline-none focus:ring-2 focus:ring-indigo-500 mb-4 transition-all">
+            <button id="unlockBtn" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-2 rounded-lg transition-colors shadow-lg">
+                Unlock
+            </button>
+        </div>
+    </div>
+
+    <div id="toolScreen" class="hidden w-full max-w-md p-4 fade-in">
+        <div class="bg-gray-900 p-8 rounded-3xl shadow-2xl border border-gray-700">
+            <div class="flex items-center justify-between mb-8">
+                <h1 class="text-xl font-black text-white tracking-tighter uppercase">Discord Looper</h1>
+                <span class="text-[10px] bg-red-600 text-white px-2 py-1 rounded-full animate-pulse">LIVE</span>
+            </div>
+
+            <div class="space-y-6">
+                <div>
+                    <label class="text-[10px] text-gray-500 font-bold uppercase ml-1">Webhook URL</label>
+                    <input type="text" id="webhookUrl" placeholder="https://discord.com/..." 
+                        class="w-full bg-gray-800 border border-gray-700 rounded-xl p-4 text-sm text-white focus:outline-none focus:border-indigo-500 transition-all">
+                </div>
+
+                <div>
+                    <label class="text-[10px] text-gray-500 font-bold uppercase ml-1">Interval (Seconds)</label>
+                    <input type="number" id="interval" value="3" min="1"
+                        class="w-full bg-gray-800 border border-gray-700 rounded-xl p-4 text-sm text-white focus:outline-none focus:border-indigo-500 transition-all">
+                </div>
+
+                <button id="startBtn" class="w-full bg-white hover:bg-gray-200 text-black font-black py-4 rounded-xl shadow-xl transition-all uppercase tracking-widest">
+                    Start Loop
+                </button>
+
+                <div id="statusArea" class="hidden border-t border-gray-800 pt-6 mt-6">
+                    <div class="flex justify-between items-center text-xs font-mono">
+                        <span class="text-gray-500 uppercase">Status:</span>
+                        <span class="text-green-500 font-bold">ACTIVE</span>
+                    </div>
+                    <div class="flex justify-between items-center text-xs font-mono mt-2">
+                        <span class="text-gray-500 uppercase">Total Sent:</span>
+                        <span id="counter" class="text-white">0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
